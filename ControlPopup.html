@@ -1,21 +1,171 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ControlPopup</title>
+    <style>
+        button {
+            border: 2px darkcyan solid;
+            background-color: aqua;
+            border-radius: 6px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            transition: 0.2s;
+            margin: 3px;
+        }
+
+        button:hover {
+            border: 2px rgb(1, 87, 87) solid;
+            background-color: rgba(0, 163, 163, 0.979);
+        }
+
+        #container2 {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .CommandButtons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 90vw;
+            flex-wrap: wrap;
+        }
+
+        .DirectionButtons {
+            display: grid;
+            grid-template-areas: "up up" "left right" "down down";
+            justify-items: center;
+            align-items: center;
+            grid-gap: 10px;
+            /* Espaço entre os botões */
+            border: 2px gray solid;
+            border-radius: 4px;
+            margin: 5px;
+            padding: 5px;
+        }
+
+        .up {
+            grid-area: up;
+        }
+
+        left {
+            grid-area: left;
+        }
+
+        .right {
+            grid-area: right;
+        }
+
+        .down {
+            grid-area: down;
+        }
+
+        .FramesButtons{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
 </head>
+
 <body>
-    <button onclick="SaveProgram()">função</button>
-    <button>Teste</button>
-    <button>Teste</button>
-    <button>Teste</button>
-    <button>Teste</button>
+    <div id="container2">
+        <div class="CommandButtons">
+            <button id="SaveFrame" class="comButton" onclick="SaveFrame()">
+                Salvar frame
+            </button>
+            <button id="SaveProgram" class="comButton" onclick="SaveProgram()">
+                Salvar programa
+            </button>
+            <button id="runProgram" class="comButton" onclick="openPopup()">
+                Executar programa
+            </button>
+            <button id="removeLast" class="comButton" onclick="RemoveLast()">
+                Exclui ultimo frame
+            </button>
+            <button id="invert" class="comButton" onclick="invert()">
+                Inverter seleção
+            </button>
+        </div>
+            <div class="DirectionButtons">
+                <button id="" class="comButton left" onclick="ToBehind()">
+                    <img src="./Images/seta-direita.png" alt="" style="height: 10px; rotate: 180deg" />Para trás
+                </button>
+                <button id="" class="comButton right" onclick="ToFront()">
+                    Para frente<img src="./Images/seta-direita.png" alt="" style="height: 10px" />
+                </button>
+                <button id="" class="comButton up" onclick="ToUp()">
+                    Para cima<img src="./Images/seta-direita.png" alt="" style="height: 10px; rotate: 270deg" />
+                </button>
+                <button id="" class="comButton down" onclick="ToDown()">
+                    Para baixo<img src="./Images/seta-direita.png" alt="" style="height: 10px; rotate: 90deg" />
+                </button>
+            </div>
+        </div>
+
+        <div class="FramesButtons">
+            <button id="SaveFrame" class="comButton" onclick="PreviousFrame()">
+                <img src="./Images/seta-direita.png" alt="" style="height: 10px; rotate: 180deg" />
+            </button>
+            <p id="FramePosition">Frame 0/0</p>
+            <button id="SaveProgram" class="comButton" onclick="NextFrame()">
+                <img src="./Images/seta-direita.png" alt="" style="height: 10px" />
+            </button>
+        </div>
+    </div>
 </body>
 
 <script>
+
+var FramePosition = document.getElementById("FramePosition")
+function RefreshFramesCounter() {
+    var currentFrame = window.opener.actualFrame + 1
+     var ProgramLen = window.opener.FullProgram.length
+    FramePosition.textContent = ("Frame "+ currentFrame + "/" + ProgramLen)
+}
+    document.addEventListener("keydown", function (event) {
+        if (event.key.toLowerCase() == "s") {
+            SaveFrame();
+        }
+    });
+    function SaveFrame() {
+        window.opener.SaveFrame();
+        RefreshFramesCounter()
+    }
     function SaveProgram() {
-        window.opener.SaveProgram()
+        window.opener.SaveProgram();
+    }
+    function RemoveLast() {
+        window.opener.RemoveLast();
+        RefreshFramesCounter()
+    }
+    function PreviousFrame() {
+        window.opener.PreviousFrame();
+        RefreshFramesCounter()
+    }
+    function NextFrame() {
+        window.opener.NextFrame();
+        RefreshFramesCounter()
+    }
+    function ToUp() {
+        window.opener.ToUp();
+    }
+    function ToDown() {
+        window.opener.ToDown();
+    }
+    function ToFront() {
+        window.opener.ToFront();
+    }
+    function ToBehind() {
+        window.opener.ToBehind();
+    }
+    function invert() {
+        window.opener.invert();
     }
 </script>
+
 </html>

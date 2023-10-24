@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+
+  .div1 {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 40px 40px 40px 40px 40px 40px;
+    grid-template-rows: repeat(auto-fill, minmax(4 0px, 1fr));
+  }
+
+  body {
+    padding: 0px;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .botao {
+    margin: 0px;
+    width: 40px;
+    height: 30px;
+    border: 2px, black, solid;
+    border-radius: 5px;
+    background-color: darkgray;
+  }
+
+  .botoes {
+    width: 50vw;
+    height: 99vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #bbbbbb;
+  }
+
+  #container {
+    background-color: red;
+  }
+
+  #container {
+    background-color: red;
+    width: 60vw;
+    height: 94vh;
+    background-color: #bbbbbb;
+  }
+
+  .comButton {
+    width: 150px;
+    height: 25px;
+    border: 2px, black, solid;
+    border-radius: 3px;
+  }
+
+  .CommandButtons {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    justify-content: center;
+  }
